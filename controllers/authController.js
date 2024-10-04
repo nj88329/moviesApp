@@ -14,4 +14,4 @@ const Users = require('../models/usersModel');
        res.status(201).json(user);
     }
 
-    module.exports =  googleLogin 
+    module.exports =  googleLogin ;
