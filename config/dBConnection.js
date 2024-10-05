@@ -9,8 +9,5 @@ const connectDb = async () => {
     }
   }
 
- 
-
-
 // connectDb().catch(console.error);
  module.exports = { connectDb }  ;
