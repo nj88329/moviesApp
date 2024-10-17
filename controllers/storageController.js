@@ -3,9 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const multerStorage = multer.diskStorage({
-
-
-
+    
     destination:(req, file, cb)=>{   
         
         const dir = '../frontend/vite-project/src/assets/others';
