@@ -1,12 +1,27 @@
 const axios = require('axios');
 const Task = require('../models/taskModels');
+const Users = require('../models/usersModel')
 
 const  addTask = async( req, res )=>{
    try{
     const addedTask = req.body;
-    console.log('redssd', addedTask)
-     const task = await Task.create({movie:addedTask , taskStatus : 'To Do'});
-     console.log('task', task)
+    
+    const userIdFromToken = req.user.uid; // Assuming 'uid' is in the decoded token
+     console.log('token',userIdFromToken)
+      
+        // Find the user by uid
+        const user = await Users.findOne({ uid: userIdFromToken });
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+     const task = await Task.create({
+        movie:addedTask , 
+        taskStatus : 'To Do' ,
+         user_id : user._id
+        });
+   
     res.status(201).json(task);
    }catch(err){
     res.status(400).json(err)
@@ -25,7 +40,25 @@ const  addPdf = async( req, res )=>{
  }
  
 
+ const getTask =async(req, res)=>{
+
+   console.log('req.user.getTask',req.user ) 
+
+   try{
+        const getTask = await Task.findById(movie.title);
+        console.log(getTask);
+          res.status(200).json(getTask);
+   }catch(err){
+    res.status(400).json(err);
+   }
+
+ }
+
 const getAllTask = async(req, res)=>{
+    
+    const userIdFromToken = req.user.uid; // Assuming 'uid' is in the decoded token
+
+     console.log('user', req.user.user_id)
     try{
         const getTasks = await Task.find();
           res.status(200).json(getTasks);
@@ -54,4 +87,4 @@ const deleteAllTask = async(req, res)=>{
 }
 
 
-module.exports = { addTask , deleteTask , getAllTask , deleteAllTask }
+module.exports = { addTask , deleteTask , getAllTask , deleteAllTask  , getTask }

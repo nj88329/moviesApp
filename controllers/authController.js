@@ -9,8 +9,8 @@ const Users = require('../models/usersModel');
        {
          user = new Users({uid , email , name, image});
          await user.save();
-     
        }
+       console.log('usernew', user)
        res.status(201).json(user);
     }
 

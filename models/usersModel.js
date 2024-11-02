@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const usersSchema = mongoose.Schema({
-    uid : { type: String , required :true ,unique : true},
+    uid : { type: String , 
+        required :true ,
+        unique : true
+    },
     name : {
         type: String,
         required: [ true , "Please add the user name"]

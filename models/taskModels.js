@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const tasksSchema = mongoose.Schema({
+    user_id : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true,
+        ref: "User"
+     },
      movie : {
         type: Object,
         required: [ true , "Please add the movie"]
@@ -8,6 +13,7 @@ const tasksSchema = mongoose.Schema({
       taskStatus:{
         type: String
      },
+     
 },
     {
         timestamps : true,
