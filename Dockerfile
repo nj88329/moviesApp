@@ -13,6 +13,9 @@ RUN npm install --production
 # Copy the rest of the application code
 COPY . .
 
+# Copy the .env file to the working directory
+COPY .env ./
+
 # Expose port 3000 for the application
 EXPOSE 3000
 
