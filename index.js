@@ -1,7 +1,7 @@
 const admin = require('./assets/firebase')
 const fs = require('fs');
 const express  = require('express');
-const { connectDb } = require("./config/dbConnection");
+const { connectDb } = require("./config/dBConnection");
 const cors = require('cors');
 const { upload, multer }= require('./controllers/storageController');
 
