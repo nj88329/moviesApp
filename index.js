@@ -5,6 +5,7 @@ const { connectDb } = require("./config/dbConnection");
 const cors = require('cors');
 const { upload, multer }= require('./controllers/storageController');
 
+
 const path = require('path');
 require("dotenv").config();
 
@@ -26,8 +27,10 @@ app.use((req, res, next) => {
   });
 
 
+app.use('/pay', require( './routes/paymentRoute'));
 app.use( '/add' , require('./routes/taskRoute'));
 app.use('/auth', require('./routes/googleAuthRoute'));
+
 
 app.post("/upload", upload.single('file'), (req, res) => {
   console.log("Body: ", req.body);

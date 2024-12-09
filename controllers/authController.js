@@ -2,7 +2,7 @@ const Users = require('../models/usersModel');
 
   const googleLogin = async(req, res)=>{
 
-        const { uid , email , name, image  } = req.user;
+        const {  uid , email , name, image  } = req.user;
         let user = await Users.findOne({uid});
 
        if( !user )
